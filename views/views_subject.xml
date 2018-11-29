@@ -79,10 +79,21 @@
                   sequence="4"/>
 
         <menuitem name="Asignaturas"
-                  id="menu_op_subject"
+                  id="menu_op_subject_gen"
+                  sequence="1"
+                  parent="menu_op_subject_root"
+        />
+        <menuitem name="Tipo de Asignaturas"
+                  id="menu_op_type_subject"
                   sequence="1"
                   action="act_open_op_subject_view"
-                  parent="menu_op_subject_root"
+                  parent="menu_op_subject_gen"
+        />
+        <menuitem name="Asignaturas"
+                  id="menu_op_subject"
+                  sequence="2"
+                  action="act_open_op_subject_view"
+                  parent="menu_op_subject_gen"
         />
 
     </data>

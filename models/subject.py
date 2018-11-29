@@ -14,3 +14,7 @@ class OpSubject(models.Model):
         [('theory', 'Theory'), ('practical', 'Practical'),
          ('both', 'Both'), ('other', 'Other')],
         'Type', default="theory", required=True)
+
+
+class TypeSubject(models.Model):
+    _name = 'op.type.subject'
