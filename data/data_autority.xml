@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--TIPOS AUTORIDAD-->
+        <record id="autority_type_aut_personales" model="autority.type">
+            <field name="name">Autoridades Personales</field>
+        </record>
+
+        <record id="autority_type_aut_colegiales" model="autority.type">
+            <field name="name">Autoridades Colegiales</field>
+        </record>
+
+        <record id="autority_type_com_auxiliares" model="autority.type">
+            <field name="name">Comisiones Auxiliares</field>
+        </record>
+
+        <record id="autority_type_oficiales" model="autority.type">
+            <field name="name">Oficiales</field>
+        </record>
+
+        <record id="autority_type_otras" model="autority.type">
+            <field name="name">Otras Autoridades</field>
+        </record>
+
+        <!--AUTORIDADES PERSONALES-->
+        <record id="autority_gran_canciller" model="autority">
+            <field name="name">Gran Canciller</field>
+            <field name="type" eval="ref('autority_type_aut_personales')"/>
+        </record>
+
+        <record id="autority_presidente" model="autority">
+            <field name="name">Presidente</field>
+            <field name="type" eval="ref('autority_type_aut_personales')"/>
+        </record>
+
+        <!--AUTORIDADES COLEGIALES-->
+        <record id="autority_senado" model="autority">
+            <field name="name">Senado</field>
+            <field name="type" eval="ref('autority_type_aut_colegiales')"/>
+        </record>
+
+        <record id="autority_cons_academico" model="autority">
+            <field name="name">Consejo Académico</field>
+            <field name="type" eval="ref('autority_type_aut_colegiales')"/>
+        </record>
+
+        <record id="autority_cons_economico" model="autority">
+            <field name="name">Consejo Económico</field>
+            <field name="type" eval="ref('autority_type_aut_colegiales')"/>
+        </record>
+
+        <!--COMISIONES AUXILIARES-->
+        <record id="autority_com_cualidad_acad" model="autority">
+            <field name="name">Comisión de Cualidad Académica</field>
+            <field name="type" eval="ref('autority_type_com_auxiliares')"/>
+        </record>
+
+        <record id="autority_com_cientifica" model="autority">
+            <field name="name">Comisión Científica</field>
+            <field name="type" eval="ref('autority_type_com_auxiliares')"/>
+        </record>
+
+        <record id="autority_com_disciplinaria" model="autority">
+            <field name="name">Comisión Disciplinaria</field>
+            <field name="type" eval="ref('autority_type_com_auxiliares')"/>
+        </record>
+
+        <!--OFICIALES-->
+        <record id="autority_sec_acad" model="autority">
+            <field name="name">Secretario Académico</field>
+            <field name="type" eval="ref('autority_type_oficiales')"/>
+        </record>
+
+        <record id="autority_bibliotecario" model="autority">
+            <field name="name">Bibliotecario</field>
+            <field name="type" eval="ref('autority_type_oficiales')"/>
+        </record>
+
+        <record id="autority_economo" model="autority">
+            <field name="name">Ecónomo</field>
+            <field name="type" eval="ref('autority_type_oficiales')"/>
+        </record>
+
+    </data>
+</openerp>

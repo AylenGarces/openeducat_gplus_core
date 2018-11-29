@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--ESTADO CIVIL-->
+        <record id="estado_civil_soltero" model="estado.civil">
+            <field name="name">Soltero</field>
+        </record>
+
+        <record id="estado_civil_soltero_celibe" model="estado.civil">
+            <field name="name">Soltero (célibe)</field>
+        </record>
+
+        <record id="estado_civil_casado" model="estado.civil">
+            <field name="name">Casado</field>
+        </record>
+
+        <record id="estado_civil_divorciado" model="estado.civil">
+            <field name="name">Divorciado</field>
+        </record>
+
+        <record id="estado_civil_viudo" model="estado.civil">
+            <field name="name">Viudo</field>
+        </record>
+
+        <!--ESTADO ECLESIASTICO-->
+        <record id="estado_ecles_laico" model="estado.ecles">
+            <field name="name">Laico</field>
+        </record>
+
+        <record id="estado_ecles_religioso" model="estado.ecles">
+            <field name="name">Religioso</field>
+        </record>
+
+        <record id="estado_ecles_diacono" model="estado.ecles">
+            <field name="name">Diacono</field>
+        </record>
+
+        <record id="estado_ecles_presbitero" model="estado.ecles">
+            <field name="name">Presbítero</field>
+        </record>
+
+        <record id="estado_ecles_obispo" model="estado.ecles">
+            <field name="name">Obispo</field>
+        </record>
+
+        <!--GRADO ACADEMICO-->
+        <record id="grado_academico_tec_medio" model="grado.acad">
+            <field name="name">Técnico Medio</field>
+            <field name="teacher">False</field>
+        </record>
+
+        <record id="grado_academico_bachiller" model="grado.acad">
+            <field name="name">Bachiller</field>
+            <field name="teacher">False</field>
+        </record>
+
+        <record id="grado_academico_licenciatura" model="grado.acad">
+            <field name="name">Licenciatura</field>
+        </record>
+
+        <record id="grado_academico_master" model="grado.acad">
+            <field name="name">Master</field>
+        </record>
+
+        <record id="grado_academico_" model="grado.acad">
+            <field name="name">Doctor</field>
+        </record>
+
+
+        <!--CATEGORIA DOCENTE ESTABLE-->
+        <record id="cat_docente_est_ordinario" model="cat.doc.estable">
+            <field name="name">Ordinario</field>
+        </record>
+
+        <record id="cat_docente_est_extraordinario" model="cat.doc.estable">
+            <field name="name">Extraordinario</field>
+        </record>
+
+        <record id="cat_docente_est_emerito" model="cat.doc.estable">
+            <field name="name">Emérito</field>
+        </record>
+
+        <!--CATEGORIA DOCENTE NO ESTABLE-->
+        <record id="cat_docente_noest_adjunto" model="cat.doc.noestable">
+            <field name="name">Adjuntos</field>
+        </record>
+
+        <record id="cat_docente_noest_encargado" model="cat.doc.noestable">
+            <field name="name">Encargados</field>
+        </record>
+
+        <record id="cat_docente_noest_invitado" model="cat.doc.noestable">
+            <field name="name">Invitados</field>
+        </record>
+
+        <record id="cat_docente_noest_asistente" model="cat.doc.noestable">
+            <field name="name">Asistentes</field>
+        </record>
+
+    </data>
+</openerp>

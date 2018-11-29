@@ -1,0 +1,402 @@
+<openerp>
+    <data>
+
+        <record model="ir.ui.view" id="op_teacher_kanban_view">
+            <field name="name">op.teacher.kanban</field>
+            <field name="model">op.teacher</field>
+            <field name="arch" type="xml">
+                <kanban class="o_res_partner_kanban">
+                    <field name="color"/>
+                    <field name="display_name"/>
+                    <field name="image"/>
+                    <field name="partner_id"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click o_res_partner_kanban">
+                                <div class="o_kanban_tags_section oe_kanban_partner_categories"/>
+                                <div class="o_kanban_image">
+                                    <t t-if="record.image.raw_value">
+                                        <img t-att-src="kanban_image('op.teacher', 'image_small', record.id.value)"/>
+                                    </t>
+                                    <t t-if="!record.image.raw_value">
+                                        <t>
+                                            <img t-att-src='_s + "/base/static/src/img/avatar.png"'/>
+                                        </t>
+                                    </t>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="oe_partner_heading">
+                                        <field name="display_name"/>
+                                    </strong>
+                                    <div class="oe_kanban_partner_links"/>
+                                </div>
+                            </div>
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="op_teacher_tree">
+            <field name="name">op.teacher.tree</field>
+            <field name="model">op.teacher</field>
+            <field name="arch" type="xml">
+                <tree delete="0">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="op_teacher_form">
+            <field name="name">op.teacher.form</field>
+            <field name="model">op.teacher</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form delete="0">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="go_partner_form" type="object" string="Contacto"
+                                    class="oe_stat_button" icon="fa-user">
+                            </button>
+                        </div>
+                        <field name="image" widget='image' class="oe_avatar"
+                               options='{"preview_image": "image_medium", "size": [90, 90]}'/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" default_focus="1" placeholder="Nombre" required="1"/>
+                            </h1>
+                        </div>
+                        <group col="6" colspan="4">
+                            <field name="phone"/>
+                            <field name="mobile"/>
+                            <field name="email"/>
+                        </group>
+                        <notebook colspan="4">
+                            <page name='info1' string="Informacion Personal 1">
+                                <group name="container_row_2">
+                                    <group>
+                                        <field name="gender" class="oe_inline"/>
+                                        <field name="birthdate" required="1"/>
+                                        <field name="city" string="NI" class="oe_inline"/>
+                                    </group>
+                                    <group>
+                                        <field name="nacionality" options="{'no_create': True}" class="oe_inline"/>
+                                        <field name="lang" class="oe_inline"/>
+                                        <field name="blood_group" class="oe_inline"/>
+                                        <field name="emergency_contact" context="{'show_address': 1}"
+                                               options='{"always_reload": True}' class="oe_inline"/>
+                                    </group>
+                                </group>
+                                <group string="Dirección">
+                                    <label for="street" string="Dirección"/>
+                                    <div>
+                                        <div class="o_address_format" name="div_address">
+                                            <field name="street" placeholder="Dirección..." class="o_address_street"/>
+                                            <field name="street2" placeholder="Calle 2..." class="o_address_street"/>
+                                            <field name="zip" placeholder="Z.P" class="o_address_zip"/>
+                                            <field name="country_id" placeholder="País" class="oe_inline"
+                                                   options='{"no_open": True, "no_create": True}'/>
+                                            <field name="state_id" class="oe_inline" invisible="0"
+                                                   placeholder="Provincia"
+                                                   domain="[('country_id','=',country_id)]"
+                                                   options="{'no_create': True}"/>
+                                            <field name="town_id" invisible="0" class="oe_inline"
+                                                   placeholder="Municipio"
+                                                   domain="[('state_id','=',state_id)]" options="{'no_create': True}"/>
+                                            <field name="zone_id" invisible="0" class="oe_inline" placeholder="Reparto"
+                                                   domain="[('town_id','=',town_id)]" options="{'no_create': True}"/>
+                                        </div>
+                                    </div>
+                                </group>
+                            </page>
+                            <page name='info2' string="Informacion Personal 2">
+                                <group>
+                                    <group>
+                                        <field name="estado_civil" class="oe_inline"
+                                               options="{'no_create': True, 'no_open':True}"
+                                               domain="[('teacher','=',True)]"/>
+                                        <field name="estado_ecles" class="oe_inline"
+                                               options="{'no_create': True, 'no_open':True}"
+                                               domain="[('teacher','=',True)]"/>
+                                        <field name="grado_acad" class="oe_inline"
+                                               options="{'no_create': True, 'no_open':True}"
+                                               domain="[('teacher','=',True)]"/>
+                                        <field name="especialidad" class="oe_inline"
+                                               attrs="{'invisible': [('grado_acad','=', False)], 'required': [('grado_acad','!=', False)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="cat_doc_type" widget="radio"/>
+                                        <field name="cat_doc_estable" class="oe_inline"
+                                               options="{'no_create': True, 'no_open':True}"
+                                               attrs="{'invisible': [('cat_doc_type','!=', 'estable')]}"/>
+                                        <field name="cat_doc_noestable" class="oe_inline"
+                                               options="{'no_create': True, 'no_open':True}"
+                                               attrs="{'invisible': [('cat_doc_type','=', 'estable')]}"/>
+                                    </group>
+                                </group>
+
+                            </page>
+                            <page name='subjects' string="Asignaturas"></page>
+                            <page name='merito' string="Méritos">
+                                <field name="merito_lines">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="fecha"/>
+                                        <field name="autority"/>
+                                        <field name="acuerdo"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name='sancion' string="Sanciones">
+                                <field name="sancion_lines">
+                                    <tree editable="bottom">
+                                        <field name="name"/>
+                                        <field name="fecha"/>
+                                        <field name="autority"/>
+                                        <field name="acuerdo"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_op_teacher" model="ir.actions.act_window">
+            <field name="name">Profesores</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">op.teacher</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">kanban,tree,form</field>
+        </record>
+
+        <menuitem name="Profesores"
+                  id="menu_op_teacher"
+                  sequence="1"
+                  action="action_op_teacher"
+                  parent="menu_op_teacher_root"
+        />
+
+        <menuitem id="menu_op_teacher_root" name="Profesores"
+                  sequence="5"/>
+
+        <menuitem name="Clasificadores"
+                  id="menu_clasif_main"
+                  sequence="10"
+                  parent="menu_op_teacher_root"/>
+
+        <!--ESTADO CIVIL  -->
+
+        <record model="ir.ui.view" id="estado_civil_tree">
+            <field name="name">estado.civil.tree</field>
+            <field name="model">estado.civil</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="estado_civil_form">
+            <field name="name">estado.civil.form</field>
+            <field name="model">estado.civil</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="student"/>
+                            <field name="teacher"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_estado_civil" model="ir.actions.act_window">
+            <field name="name">Estado Civil</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">estado.civil</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Estado Civil"
+                  id="menu_estado_civil"
+                  sequence="5"
+                  action="action_estado_civil"
+                  parent="menu_clasif_main"/>
+
+        <!--ESTADO ECLESIASTICO  -->
+
+        <record model="ir.ui.view" id="estado_ecles_tree">
+            <field name="name">estado.ecles.tree</field>
+            <field name="model">estado.ecles</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="estado_ecles_form">
+            <field name="name">estado.ecles.form</field>
+            <field name="model">estado.ecles</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="student"/>
+                            <field name="teacher"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_estado_ecles" model="ir.actions.act_window">
+            <field name="name">Estado Ecleseástico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">estado.ecles</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Estado Ecleseástico"
+                  id="menu_estado_ecles"
+                  sequence="10"
+                  action="action_estado_ecles"
+                  parent="menu_clasif_main"/>
+
+        <!--GRADO ACADEMICO  -->
+
+        <record model="ir.ui.view" id="grado_acad_tree">
+            <field name="name">grado.acad.tree</field>
+            <field name="model">grado.acad</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="grado_acad_form">
+            <field name="name">grado.acad.form</field>
+            <field name="model">grado.acad</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="student"/>
+                            <field name="teacher"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_grado_acad" model="ir.actions.act_window">
+            <field name="name">Grado Académico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">grado.acad</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Grado Académico"
+                  id="menu_grado_acad"
+                  sequence="15"
+                  action="action_grado_acad"
+                  parent="menu_clasif_main"/>
+
+        <!--CATEGORIA DOCENTE ESTABLE  -->
+
+        <record model="ir.ui.view" id="cat_doc_est_tree">
+            <field name="name">cat.doc.estable.tree</field>
+            <field name="model">cat.doc.estable</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cat_doc_est_form">
+            <field name="name">cat.doc.estable.form</field>
+            <field name="model">cat.doc.estable</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cat_doc_est" model="ir.actions.act_window">
+            <field name="name">Categoría Docente Estable</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cat.doc.estable</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Categoría Docente Estable"
+                  id="menu_cat_doc_est"
+                  sequence="20"
+                  action="action_cat_doc_est"
+                  parent="menu_clasif_main"/>
+
+        <!--CATEGORIA DOCENTE NO ESTABLE  -->
+
+        <record model="ir.ui.view" id="cat_doc_noest_tree">
+            <field name="name">cat.doc.noestable.tree</field>
+            <field name="model">cat.doc.noestable</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="cat_doc_noest_form">
+            <field name="name">cat.doc.noestable.form</field>
+            <field name="model">cat.doc.noestable</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_cat_doc_noest" model="ir.actions.act_window">
+            <field name="name">Categoría Docente No Estable</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cat.doc.noestable</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Categoría Docente No Estable"
+                  id="menu_cat_doc_noest"
+                  sequence="25"
+                  action="action_cat_doc_noest"
+                  parent="menu_clasif_main"/>
+
+    </data>
+</openerp>
