@@ -31,6 +31,7 @@
         'data/data_info2_teacher_student.xml',
         'views/templates.xml',
         'views/views_subject.xml',
+        'views/view_type_subject.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
