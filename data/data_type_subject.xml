@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <!--TIPOS ASIGNATURAS-->
+        <record id="type_subject_required" model="type.subject">
+            <field name="name">Obligatoria</field>
+        </record>
+        <record id="type_subject_optional" model="type.subject">
+            <field name="name">Optativa</field>
+        </record>
+        <record id="type_subject_seminar" model="type.subject">
+            <field name="name">Seminario</field>
+        </record>
+        <record id="type_subject_intensive" model="type.subject">
+            <field name="name">Intensiva</field>
+        </record>
+        <record id="type_subject_extradocente_activities" model="type.subject">
+            <field name="name">Actividades Extradocentes</field>
+        </record>
+        <record id="type_subject_end_cycle" model="type.subject">
+            <field name="name">Fin de Ciclo</field>
+        </record>
+    </data>
+</openerp>
