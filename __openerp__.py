@@ -30,6 +30,7 @@
         'data/data_autority.xml',
         'data/data_info2_teacher_student.xml',
         'data/data_type_subject.xml',
+        'data/data_subject.xml',
         'views/templates.xml',
         'views/views_subject.xml',
         'views/view_type_subject.xml',
