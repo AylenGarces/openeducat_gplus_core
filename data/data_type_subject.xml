@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
     <data>
-        <!--TIPOS ASIGNATURAS-->
+        <!--TIPOS ASIGNATURAS prueba -->
         <record id="type_subject_required" model="op.type.subject">
             <field name="name">Obligatoria</field>
         </record>
@@ -18,7 +18,7 @@
             <field name="name">Actividades Extradocentes</field>
         </record>
         <record id="type_subject_end_cycle" model="op.type.subject">
-            <field name="name">Fin de Ciclo2</field>
+            <field name="name">Fin de Ciclo</field>
         </record>
     </data>
 </openerp>
