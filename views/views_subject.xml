@@ -3,21 +3,24 @@
     <data>
 
         <record id="view_op_subject_tree" model="ir.ui.view">
-            <field name="name">subject.tree</field>
-            <field name="model">subject</field>
+            <field name="name">op.subject.tree</field>
+            <field name="model">op.subject</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <tree string="Asignaturas">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="type"/>
+                    <field name="approved_note"/>
+                    <field name="credits"/>
+                    <field name="meetings"/>
                 </tree>
             </field>
         </record>
 
         <record id="view_op_subject_form" model="ir.ui.view">
-            <field name="name">subject.form</field>
-            <field name="model">subject</field>
+            <field name="name">op.subject.form</field>
+            <field name="model">op.subject</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <form string="Asignaturas">
@@ -26,21 +29,34 @@
                             <field name="name"/>
                             <field name="code"/>
                             <field name="type"/>
+                            <field name="approved_note"/>
+                            <field name="credits"/>
+                            <field name="meetings"/>
                         </group>
+                        <!--<page name='teachers'string="Profesores">-->
+                        <!--<field name="teachers_lines">-->
+                        <!--<tree>-->
+                        <!--<field name="name"/>-->
+                        <!--</tree>-->
+                        <!--</field>-->
+                        <!--</page>-->
                     </sheet>
                 </form>
             </field>
         </record>
 
         <record id="view_op_subject_search" model="ir.ui.view">
-            <field name="name">subject.search</field>
-            <field name="model">subject</field>
+            <field name="name">op.subject.search</field>
+            <field name="model">op.subject</field>
             <field name="priority" eval="8"/>
             <field name="arch" type="xml">
                 <search string="Asignaturas">
                     <field name="name"/>
                     <field name="code"/>
                     <field name="type"/>
+                    <field name="approved_note"/>
+                    <field name="credits"/>
+                    <field name="meetings"/>
                     <newline/>
                     <group expand="0" string="Group By...">
                         <filter string="Type" domain="[]"
@@ -53,7 +69,7 @@
         <record model="ir.actions.act_window" id="act_open_op_subject_view">
             <field name="name">Asignaturas</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">subject</field>
+            <field name="res_model">op.subject</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="search_view_id" ref="view_op_subject_search"/>

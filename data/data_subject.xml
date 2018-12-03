@@ -3,22 +3,22 @@
     <data>
 
         <!--ASIGNATURAS-->
-        <record id="subject_synthesis_exam" model="subject">
+        <record id="subject_synthesis_exam" model="op.subject">
             <field name="name">Examen de síntesis</field>
             <field name="code">EXS</field>
             <field name="type" eval="ref('type_subject_end_cycle')"/>
         </record>
-        <record id="subject_tesina" model="subject">
+        <record id="subject_tesina" model="op.subject">
             <field name="name">Tesina</field>
             <field name="code">TEN</field>
             <field name="type" eval="ref('type_subject_end_cycle')"/>
         </record>
-        <record id="subject_thesis" model="subject">
+        <record id="subject_thesis" model="op.subject">
             <field name="name">Tesis</field>
             <field name="code">TES</field>
             <field name="type" eval="ref('type_subject_end_cycle')"/>
         </record>
-        <record id="subject_thesis_defense" model="subject">
+        <record id="subject_thesis_defense" model="op.subject">
             <field name="name">Defensa de Tesis</field>
             <field name="code">DEF</field>
             <field name="type" eval="ref('type_subject_end_cycle')"/>

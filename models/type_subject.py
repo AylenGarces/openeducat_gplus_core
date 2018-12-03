@@ -4,7 +4,7 @@ from openerp import models, fields
 
 
 class TypeSubject(models.Model):
-    _name = 'type.subject'
+    _name = 'op.type.subject'
 
     name = fields.Char(String='Tipo', size=128, required=True)
     sequence = fields.Char(string='Secuencia', size=128)
