@@ -18,7 +18,7 @@
             <field name="name">Actividades Extradocentes</field>
         </record>
         <record id="type_subject_end_cycle" model="op.type.subject">
-            <field name="name">Fin de Ciclo</field>
+            <field name="name">Fin de Ciclo2</field>
         </record>
     </data>
 </openerp>
